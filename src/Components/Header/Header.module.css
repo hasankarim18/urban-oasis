@@ -1,0 +1,19 @@
+
+
+.header {
+    height: 80px;
+    background-color: #1C2B35;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.nav{
+    list-style: none;
+}
+
+.navlink:hover{
+    color:orange;
+}
