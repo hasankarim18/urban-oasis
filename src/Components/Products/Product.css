@@ -1,2 +1,35 @@
 
+.product{
+    position: relative;
+}
+.product .card{
+    width: 300px;
+    height: 510px;
+}
 
+.add_to_cart{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+     
+}
+
+.info_2{
+    position: absolute;
+    left: 0;
+    bottom: 52px;
+}
+
+.cart-btn{
+background-color: rgba(255, 153, 0, 0.3);
+height: 50px;
+}
+
+@media only screen and (max-width: 1080px) {
+    .product{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

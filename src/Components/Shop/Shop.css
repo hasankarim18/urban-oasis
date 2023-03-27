@@ -2,18 +2,26 @@
 .shop_containere{
     display: grid;
     grid-template-columns: 4fr 1fr;
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
 
 }
 
 .products_container{
     text-align: center;
+    padding-left: 100px;
+    padding-right: 100px;
    
 }
 
 .product_grid{
-     display: grid;
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap:40px;
 }
+
 
 .currentPage{
     background-color: gold;
@@ -34,4 +42,58 @@
 .pageNuberContainer .active{
     background-color: gold;
     color:white;
+}
+
+.cart_container{
+    /* max-width: 264px; */
+    background-color: rgba(255, 153, 0, 0.3);
+}
+
+@media only screen and (max-width: 1380px) {
+    .products_container{
+        padding-right:40px;
+    }
+   .product_grid{
+     grid-template-columns: repeat(3, 1fr);
+     gap:20px;
+    }
+}
+@media only screen and (max-width: 1260px) {
+
+      .cart_container{
+        display: none;
+        position: absolute;
+        top:0;
+        z-index: 10;
+        right: -200px;
+    }
+
+}
+@media only screen and (max-width: 1080px) {
+
+     .products_container{
+    padding-right:20px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;   
+    }
+    .product_grid{
+     grid-template-columns: repeat(2, 1fr);
+     gap:10px;
+    }
+   
+    .shop_containere{
+    display: grid;
+    grid-template-columns:  1fr;
+    position: relative;
+    }
+  
+}
+
+
+@media only screen and (max-width: 768px) {
+    .product_grid{
+     grid-template-columns:1fr;
+     gap:10px;
+    }
 }

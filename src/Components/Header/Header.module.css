@@ -17,3 +17,8 @@
 .navlink:hover{
     color:orange;
 }
+
+@media only screen and (max-width: 768px) {
+  
+
+}

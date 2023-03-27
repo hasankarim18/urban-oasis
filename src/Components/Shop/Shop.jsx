@@ -19,23 +19,11 @@ const Shop = ({products, isProductsLoading}) => {
       const renderProducts = () => {
         return currentProducts.map((product,i) => {
            // console.log(product);
-            return <Product product={product} key={product.id} i={i} />;
+            return <Product product={product} key={product.id} />;
         });
       };
 
-    //    const renderPageNumbers = () => {
-    //      const pageNumbers = [];
-
-    //      for (let i = 1; i <= totalPages; i++) {
-    //        pageNumbers.push(
-    //          <li className={`p-3 border ms-1 me-1 ${currentPage===i && "active"}`} key={i} onClick={() => setCurrentPage(i)}>
-    //            {i}
-    //          </li>
-    //        );
-    //      }
-
-    //      return pageNumbers;
-    //    };
+ 
 
      const renderPageNumbers = () => {
        const pageNumbers = [];
@@ -132,7 +120,7 @@ const Shop = ({products, isProductsLoading}) => {
             {isProductsLoading && <Spinner />}
             {renderProducts()}
           </div>
-          <ul className="d-flex pageNuberContainer" type="none">
+          <ul className="d-flex pageNuberContainer mt-5" type="none">
             {renderPageNumbers()}
           </ul>
         </div>

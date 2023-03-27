@@ -5,9 +5,9 @@ import Logo from '../../images/Logo.svg'
 const Header = () => {
     return (
       <div
-        className={`text-white d-flex justify-content-between align-items-center ${classes.header}`}
+        className={`text-white d-flex flex-column flex-md-row justify-content-between align-items-center ${classes.header}`}
       >
-        <img src={Logo} alt="" />
+        <img className={classes.logo} src={Logo} alt="" />
         <nav className={`d-flex gap-3 fs-5 ${classes.nav} text-capitalize`}>
           <li className="nav-itme">
             <a href="/shop" className={`nav-link ${classes.navlink}`}>
