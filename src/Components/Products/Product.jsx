@@ -24,7 +24,7 @@ const Product = ({ product, handleAddToCart }) => {
           <p className="mb-0 pb-0">Ratings: {ratings}</p>
         </div>
         <div className="add_to_cart ">
-          <button onClick={()=> {handleAddToCart(id)}} className="btn border cart-btn rounded-0 w-100">
+          <button onClick={()=> {handleAddToCart(product)}} className="btn border cart-btn rounded-0 w-100">
             Add To Cart <span className=""></span>{" "}
             <i className="fa-solid fa-cart-plus"></i>
           </button>

@@ -9,6 +9,7 @@ const Shop = ({products, isProductsLoading}) => {
 
 
     const [currentPage, setCurrentPage] = useState(1)
+    const [cart, setCart] = useState([])
 
     
     const productsPerPage = 9;
@@ -23,8 +24,15 @@ const Shop = ({products, isProductsLoading}) => {
     const totalPages = Math.ceil(products.length / productsPerPage);
 
     const handleAddToCart = (product)=> {
-        console.log(product)
+      // const newCart = [...cart,product]
+      // setCart(newCart)   
+      // functional update is good     
+      setCart((prev)=> {
+       return [...prev, product]
+      })
     }
+
+    console.log(cart);
 
    const renderProducts = ()=> {
      return currentProducts.map((product) => {
@@ -61,7 +69,7 @@ const Shop = ({products, isProductsLoading}) => {
             {renderPageNumbers}           
           </ul>
         </div>
-        <OrderSummary />
+        <OrderSummary cart={cart} />
       </div>
     );
 };
