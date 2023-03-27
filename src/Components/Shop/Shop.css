@@ -1,0 +1,37 @@
+
+.shop_containere{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+
+}
+
+.products_container{
+    text-align: center;
+   
+}
+
+.product_grid{
+     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.currentPage{
+    background-color: gold;
+    color: white;
+}
+
+.pageNuberContainer li{
+    padding: 10px;
+    font-size: 24px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.pageNuberContainer .page-number{
+    border: 1px solid black;
+}
+
+.pageNuberContainer .active{
+    background-color: gold;
+    color:white;
+}
