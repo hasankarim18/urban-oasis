@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header/Header";
 import Shop from "./Shop/Shop";
+import { getShoppingCart } from "./utilities/fakedb";
 
 const EmaJhonMain = () => {
   const [products, setProducts] = useState([]);
@@ -17,6 +18,13 @@ const EmaJhonMain = () => {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    const storredCart = getShoppingCart();
+    console.log(storredCart);
+  
+  }, [])
+  
 
   return (
     <>

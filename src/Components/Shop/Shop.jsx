@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Cart from '../Cart/Cart';
 import Product from '../Products/Product';
+import { addToDb } from '../utilities/fakedb';
  import { useRenderPageNumbers, useRenderProducts } from '../utilities/functions';
 import Spinner from '../utilities/Spinner';
 import './Shop.css';
@@ -30,9 +31,12 @@ const Shop = ({products, isProductsLoading}) => {
       setCart((prev)=> {
        return [...prev, product]
       })
+
+      addToDb(product.id)
+
     }
 
-    console.log(cart);
+  //  console.log(cart);
 
    const renderProducts = ()=> {
      return currentProducts.map((product) => {
