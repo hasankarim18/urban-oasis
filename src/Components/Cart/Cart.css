@@ -1,0 +1,28 @@
+.cart_container{
+    /* max-width: 264px; */
+    background-color: rgba(255, 153, 0, 0.3);
+    position: relative;
+}
+
+
+.cart_info{
+    position:sticky;
+    top:20px;
+}
+
+.cart_info p{
+    font-size: 17px;
+}
+
+
+@media only screen and (max-width: 1260px) {
+
+      .cart_container{
+        display: none;
+        position: absolute;
+        top:0;
+        z-index: 10;
+        right: -200px;
+    }
+
+}

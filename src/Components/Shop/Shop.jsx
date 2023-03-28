@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
 import Product from '../Products/Product';
  import { useRenderPageNumbers, useRenderProducts } from '../utilities/functions';
 import Spinner from '../utilities/Spinner';
-import OrderSummary from './OrderSummary';
 import './Shop.css';
 
 const Shop = ({products, isProductsLoading}) => {
@@ -69,7 +69,8 @@ const Shop = ({products, isProductsLoading}) => {
             {renderPageNumbers}           
           </ul>
         </div>
-        <OrderSummary cart={cart} />
+        <Cart cart={cart} />
+        {/* <OrderSummary cart={cart} /> */}
       </div>
     );
 };

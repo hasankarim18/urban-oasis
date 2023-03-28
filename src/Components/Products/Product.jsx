@@ -21,7 +21,7 @@ const Product = ({ product, handleAddToCart }) => {
         </div>
         <div className="info_2 p-2 text-start">
           <p className="mb-0 pb-0">Manufacturer: {seller} </p>
-          <p className="mb-0 pb-0">Ratings: {ratings}</p>
+          <p className="mb-0 pb-0">Ratings: {ratings} star</p>
         </div>
         <div className="add_to_cart ">
           <button onClick={()=> {handleAddToCart(product)}} className="btn border cart-btn rounded-0 w-100">
