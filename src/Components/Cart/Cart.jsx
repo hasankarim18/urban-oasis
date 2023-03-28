@@ -8,9 +8,17 @@ const Cart = ({cart}) => {
  /**Price by for of loop */
 let totalPrice = 0;
 let shipping = 0;
+let quantity = 0;
  for (const product of cart) {
-    totalPrice = totalPrice + product.price
+  
+  // if(product.quantity === 0){
+  //   product.quantity =1 
+  // }
+  // short cat
+ //  product.quantity = product.quantity || 1
+    totalPrice = totalPrice + product.price * product.quantity
     shipping = shipping + product.shipping
+    quantity = quantity + product.quantity 
   }
 
   const tax = totalPrice*7/100
@@ -21,7 +29,7 @@ let shipping = 0;
         <div className="cart_info">
           <h4>Order Summary</h4>
           <p className="fs-5 fw-bold">
-            Selected Item: <span className="text-success"> {cart.length} </span>{" "}
+            Selected Item: <span className="text-success"> {quantity} </span>{" "}
           </p>
           <p>
             Total Price: <span className="fw-bold text-success">{totalPrice.toFixed(2)}</span>{" "}

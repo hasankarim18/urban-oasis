@@ -40,9 +40,24 @@ const Shop = ({products, isProductsLoading}) => {
       // const newCart = [...cart,product]
       // setCart(newCart)
       // functional update is good
-      setCart((prev) => {
-        return [...prev, product];
-      });
+      let newCart = [];
+      // if product doesn't exist in the cart, the set quantity = 1
+      // if exist update quantity by 1 
+
+      const exists = cart.find((pd)=> pd.id === product.id )
+
+      if(!exists){
+        // for first time add
+        product.quantity = 1
+        newCart = [...cart, product]
+      }else {
+        // product ase
+        exists.quantity = exists.quantity + 1;
+        const remaining = cart.filter((pd)=> pd.id !== product.id )
+        newCart = [...remaining, exists]
+      }
+
+      setCart(newCart);
 
       addToDb(product.id);
     };
