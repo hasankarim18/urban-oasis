@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Cart from '../Cart/Cart';
 import Product from '../Products/Product';
-import { addToDb } from '../utilities/fakedb';
+import { addToDb, getShoppingCart } from '../utilities/fakedb';
  import { useRenderPageNumbers, useRenderProducts } from '../utilities/functions';
 import Spinner from '../utilities/Spinner';
 import './Shop.css';
@@ -11,6 +11,41 @@ const Shop = ({products, isProductsLoading}) => {
 
     const [currentPage, setCurrentPage] = useState(1)
     const [cart, setCart] = useState([])
+
+    useEffect(() => {
+      const storedCart = getShoppingCart();
+      const savedCart = [];
+      // step-One: get id of the added product 
+      for (const id in storedCart) {
+        // step two: get product from products state by using id 
+        const addedProduct = products.find(product => product.id === id) 
+        if(addedProduct){
+          // step add quantiry 
+          const quantity = storedCart[id];
+          addedProduct.quantity = quantity;
+          // step 4: add the addedproduct to the saved cart
+          savedCart.push(addedProduct)
+        }
+       // console.log({addedProduct});
+      }
+      // step 5: set the cart
+      setCart(savedCart);
+
+    }, [products]);
+    
+
+
+
+    const handleAddToCart = (product) => {
+      // const newCart = [...cart,product]
+      // setCart(newCart)
+      // functional update is good
+      setCart((prev) => {
+        return [...prev, product];
+      });
+
+      addToDb(product.id);
+    };
 
     
     const productsPerPage = 9;
@@ -24,17 +59,7 @@ const Shop = ({products, isProductsLoading}) => {
 
     const totalPages = Math.ceil(products.length / productsPerPage);
 
-    const handleAddToCart = (product)=> {
-      // const newCart = [...cart,product]
-      // setCart(newCart)   
-      // functional update is good     
-      setCart((prev)=> {
-       return [...prev, product]
-      })
-
-      addToDb(product.id)
-
-    }
+  
 
   //  console.log(cart);
 

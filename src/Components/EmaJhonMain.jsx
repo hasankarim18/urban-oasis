@@ -19,11 +19,7 @@ const EmaJhonMain = () => {
       });
   }, []);
 
-  useEffect(() => {
-    const storredCart = getShoppingCart();
-    console.log(storredCart);
-  
-  }, [])
+ 
   
 
   return (
