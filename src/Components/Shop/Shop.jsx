@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Cart from '../Cart/Cart';
 import Product from '../Products/Product';
 import { addToDb, getShoppingCart } from '../utilities/fakedb';
- import { useRenderPageNumbers, useRenderProducts } from '../utilities/functions';
 import Spinner from '../utilities/Spinner';
 import './Shop.css';
 
-const Shop = ({products, isProductsLoading}) => {
-  //console.log(products);
-
-    const [currentPage, setCurrentPage] = useState(1)
+const Shop = ({products, isProductsLoading}) => {  
+  
     const [cart, setCart] = useState([])
 
     useEffect(() => {
@@ -36,14 +33,8 @@ const Shop = ({products, isProductsLoading}) => {
 
 
 
-    const handleAddToCart = (product) => {
-      // const newCart = [...cart,product]
-      // setCart(newCart)
-      // functional update is good
-      let newCart = [];
-      // if product doesn't exist in the cart, the set quantity = 1
-      // if exist update quantity by 1 
-
+    const handleAddToCart = (product) => {      
+      let newCart = [];   
       const exists = cart.find((pd)=> pd.id === product.id )
 
       if(!exists){
@@ -63,43 +54,7 @@ const Shop = ({products, isProductsLoading}) => {
     };
 
     
-    // const productsPerPage = 9;
-
-    //  const indexOfLastProduct = currentPage * productsPerPage;
-    //  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    //  const currentProducts = products.slice(
-    //    indexOfFirstProduct,
-    //    indexOfLastProduct
-    //  );
-
-    // const totalPages = Math.ceil(products.length / productsPerPage);
-
-  
-
-  //  console.log(cart);
-
-  //  const renderProducts = ()=> {
-  //    return currentProducts.map((product) => {
-  //      // console.log(product);
-  //      return (
-  //        <Product
-  //          handleAddToCart={handleAddToCart}
-  //          product={product}
-  //          key={product.id}
-  //        />
-  //      );
-  //      //  return <h1>Product</h1>
-  //    });
-  //  }
-
-
-
-
-  //  const renderPageNumbers = useRenderPageNumbers(
-  //    totalPages,
-  //    currentPage,
-  //    setCurrentPage
-  //  );
+   
 
   let showProducts = null
 
@@ -123,14 +78,10 @@ const Shop = ({products, isProductsLoading}) => {
       <div className="shop_containere">
         <div className="products_container pt-4">
           <div className="product_grid">
-            {isProductsLoading && <Spinner />}
-            {/* {renderProducts()}            */}
-            {showProducts}
-          
+            {isProductsLoading && <Spinner />}          
+            {showProducts}          
           </div>
-          <ul className="d-flex pageNuberContainer mt-5" type="none">
-            {/* {renderPageNumbers} */}
-          </ul>
+         
         </div>
         <Cart cart={cart} />
         {/* <OrderSummary cart={cart} /> */}
