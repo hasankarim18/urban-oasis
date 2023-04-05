@@ -9,7 +9,7 @@ const cartProductsLoader = async ()=> {
 
     const storedCart = getShoppingCart()
 
-    console.log({storedCart});
+    
 
      const savedCart = []
 

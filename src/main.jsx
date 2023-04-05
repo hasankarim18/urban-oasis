@@ -11,6 +11,7 @@ import Inventory from './Components/Inverntory/Inventory'
 import Login from './Components/Login/Login'
 import { cartProductsLoader } from './loaders/cartProductsLoader'
 
+
 const router = createBrowserRouter([
   {
     path: "/",
