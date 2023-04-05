@@ -7,7 +7,7 @@ import Spinner from '../utilities/Spinner';
 import './Shop.css';
 
 const Shop = ({products, isProductsLoading}) => {
-
+  //console.log(products);
 
     const [currentPage, setCurrentPage] = useState(1)
     const [cart, setCart] = useState([])
@@ -59,58 +59,77 @@ const Shop = ({products, isProductsLoading}) => {
 
       setCart(newCart);
 
-      addToDb(product.id);
+      addToDb(product.id); // video 4
     };
 
     
-    const productsPerPage = 9;
+    // const productsPerPage = 9;
 
-     const indexOfLastProduct = currentPage * productsPerPage;
-     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-     const currentProducts = products.slice(
-       indexOfFirstProduct,
-       indexOfLastProduct
-     );
+    //  const indexOfLastProduct = currentPage * productsPerPage;
+    //  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    //  const currentProducts = products.slice(
+    //    indexOfFirstProduct,
+    //    indexOfLastProduct
+    //  );
 
-    const totalPages = Math.ceil(products.length / productsPerPage);
+    // const totalPages = Math.ceil(products.length / productsPerPage);
 
   
 
   //  console.log(cart);
 
-   const renderProducts = ()=> {
-     return currentProducts.map((product) => {
-       // console.log(product);
-       return (
-         <Product
-           handleAddToCart={handleAddToCart}
-           product={product}
-           key={product.id}
-         />
-       );
-       //  return <h1>Product</h1>
-     });
-   }
+  //  const renderProducts = ()=> {
+  //    return currentProducts.map((product) => {
+  //      // console.log(product);
+  //      return (
+  //        <Product
+  //          handleAddToCart={handleAddToCart}
+  //          product={product}
+  //          key={product.id}
+  //        />
+  //      );
+  //      //  return <h1>Product</h1>
+  //    });
+  //  }
 
 
 
 
-   const renderPageNumbers = useRenderPageNumbers(
-     totalPages,
-     currentPage,
-     setCurrentPage
-   );
+  //  const renderPageNumbers = useRenderPageNumbers(
+  //    totalPages,
+  //    currentPage,
+  //    setCurrentPage
+  //  );
 
+  let showProducts = null
+
+  if(products.length > 0){
+    
+    showProducts =  products.map((product) => {
+        return (
+          <Product
+            handleAddToCart={handleAddToCart}
+            product={product}
+            key={product.id}
+          />
+        );
+      });
+    
+  }
+
+ 
     
     return (
       <div className="shop_containere">
         <div className="products_container pt-4">
           <div className="product_grid">
             {isProductsLoading && <Spinner />}
-            {renderProducts()}           
+            {/* {renderProducts()}            */}
+            {showProducts}
+          
           </div>
           <ul className="d-flex pageNuberContainer mt-5" type="none">
-            {renderPageNumbers}           
+            {/* {renderPageNumbers} */}
           </ul>
         </div>
         <Cart cart={cart} />
