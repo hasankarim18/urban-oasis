@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Cart from '../Cart/Cart';
 import Product from '../Products/Product';
-import { addToDb, getShoppingCart } from '../utilities/fakedb';
+import { addToDb, deleteShoppingCart, getShoppingCart } from '../utilities/fakedb';
 import Spinner from '../utilities/Spinner';
 import './Shop.css';
+import { Link, useLocation } from 'react-router-dom';
 
 const Shop = ({products, isProductsLoading}) => {  
   
     const [cart, setCart] = useState([])
+
+    const location = useLocation()
+    console.log(location);
 
     useEffect(() => {
       const storedCart = getShoppingCart();
@@ -72,18 +76,23 @@ const Shop = ({products, isProductsLoading}) => {
     
   }
 
+  const handleClearCart = () => {
+    deleteShoppingCart()
+    setCart([]);
+  };
  
     
     return (
       <div className="shop_containere">
         <div className="products_container pt-4">
           <div className="product_grid">
-            {isProductsLoading && <Spinner />}          
-            {showProducts}          
+            {isProductsLoading && <Spinner />}
+            {showProducts}
           </div>
-         
         </div>
-        <Cart cart={cart} />
+        <Cart handleClearCart={handleClearCart} cart={cart}>
+          <Link to="/orders">Review order</Link>
+        </Cart>
         {/* <OrderSummary cart={cart} /> */}
       </div>
     );

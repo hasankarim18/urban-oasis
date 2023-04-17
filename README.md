@@ -6,3 +6,4 @@ use this link to load data:
 
 
 ### Live Link surge: http://delightful-growth.surge.sh/
+### Live Link Netlify: https://simpleecommerce18.netlify.app/
