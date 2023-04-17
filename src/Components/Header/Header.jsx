@@ -30,6 +30,11 @@ const Header = () => {
               login
             </NavLink>
           </li>
+          <li className="nav-itme">
+            <NavLink to="/signup" className={`nav-link ${classes.navlink}`}>
+              Signup
+            </NavLink>
+          </li>
         </nav>
       </div>
     );
