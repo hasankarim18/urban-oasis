@@ -17,3 +17,14 @@
  * 5. set the provider 
  * 
  */
+
+/**
+ * HOSTING 
+ * One time per pc
+ * 1. npm install -g firebase-tools
+ * 
+ * 
+ * For each project one time 
+ * 
+ * 
+ */
