@@ -42,29 +42,40 @@ const Header = () => {
               Inventory
             </NavLink>
           </li>
-          <li className="nav-itme">
-            <NavLink to="/login" className={`nav-link ${classes.navlink}`}>
-              login
-            </NavLink>
-          </li>
-          <li className="nav-itme">
-            <NavLink to="/signup" className={`nav-link ${classes.navlink}`}>
-              Signup
-            </NavLink>
-          </li>
-          {user && (
-            <li>
-              <span className="text-warning"> {user?.email.split("@")[0]}</span>
-            </li>
+          {!user && (
+            <>
+              {" "}
+              <li className="nav-itme">
+                <NavLink to="/login" className={`nav-link ${classes.navlink}`}>
+                  login / SingUp
+                </NavLink>
+              </li>
+              {/* <li className="nav-itme">
+                <NavLink to="/signup" className={`nav-link ${classes.navlink}`}>
+                  Signup
+                </NavLink>
+              </li> */}
+            </>
           )}
-          <li>
-            <span
-              onClick={logoutHandler}
-              className="text-danger border bg-warning rounded p-2"
-            >
-              Sing Out
-            </span>
-          </li>
+
+          {user && (
+            <>
+              <li>
+                <span className="text-warning cursor-pointer">
+                  {" "}
+                  {user?.email.split("@")[0]}
+                </span>
+              </li>
+              <li>
+                <span
+                  onClick={logoutHandler}
+                  className="text-danger border bg-warning rounded p-2 cursor-pointer"
+                >
+                  Sing Out
+                </span>
+              </li>
+            </>
+          )}
         </nav>
       </div>
     );

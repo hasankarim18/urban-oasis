@@ -13,8 +13,8 @@ import { cartProductsLoader } from './loaders/cartProductsLoader'
 import Checkout from './Components/Checkout/Checkout'
 import SignUp from './Components/SignUp/SignUp'
 import AuthProvider from './Components/providers/AuthProvider';
-  import { ToastContainer, toast } from "react-toastify";
-  import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const router = createBrowserRouter([
