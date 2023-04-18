@@ -15,6 +15,7 @@ import SignUp from './Components/SignUp/SignUp'
 import AuthProvider from './Components/providers/AuthProvider';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PrivateRoutes from './Components/Routes/PrivateRoutes'
 
 
 const router = createBrowserRouter([
@@ -29,34 +30,42 @@ const router = createBrowserRouter([
       {
         path: "/orders",
         element: <Orders />,
-        loader: cartProductsLoader
+        loader: cartProductsLoader,
       },
       {
         path: "/inventory",
-        element: <Inventory />
+        element: (
+          <PrivateRoutes>
+            <Inventory />
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"/login",
-        element:<Login />
+        path: "/login",
+        element: <Login />,
       },
       {
-        path:"signup",
-        element:<SignUp />
+        path: "signup",
+        element: <SignUp />,
       },
       {
-        path:"/checkout",
-        element:<Checkout />
-      }
+        path: "/checkout",
+        element: (
+          <PrivateRoutes>
+            <Checkout />
+          </PrivateRoutes>
+        ),
+      },
     ],
   },
 ]);
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <React.Fragment>
     <AuthProvider>
       <ToastContainer />
       <RouterProvider router={router} />
     </AuthProvider>
-  </React.StrictMode>
+  </React.Fragment>
 );

@@ -33,11 +33,13 @@ const AuthProvider = ({children}) => {
 
    // create user
     const signUpWithEmailPassword = (email, password)=> {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     // login or signin
     const loginWithEmailPassword = (email, password)=> {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email,password)
     }
 

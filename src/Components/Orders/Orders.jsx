@@ -33,7 +33,7 @@ const Orders = () => {
           ))}
         </div>
         <Cart handleClearCart={handleClearCart} cart={cart}>
-          <Link to="/checkout"> Procede To checkout</Link>
+          <Link className="text-white text-decoration-none " to="/checkout"> Procede To checkout</Link>
         </Cart>
       </div>
     );

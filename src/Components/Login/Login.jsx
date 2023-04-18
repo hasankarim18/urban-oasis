@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import {Link, useNavigate} from 'react-router-dom'
+import {Link, useLocation, useNavigate} from 'react-router-dom'
 import './Login.css'
 import { AuthContext } from '../providers/AuthProvider';
 import { toast } from 'react-toastify';
@@ -7,7 +7,9 @@ import { toast } from 'react-toastify';
 const Login = () => {
     const [show, setShow] = useState(false)
     const {loginWithEmailPassword} = useContext(AuthContext)
-    const navigate = useNavigate()
+    const location = useLocation()
+    const navigate = useNavigate()  
+     let from = location.state?.from?.pathname || "/";  
 
     const signInSuccessToast = (userName)=> toast(`Hello ${userName}`)
     const signInErrorToast = (userName) => toast(`Login Error`);
@@ -28,7 +30,7 @@ const Login = () => {
             
             signInSuccessToast(userName)
             form.reset()
-            navigate('/')
+            navigate(from, { replace: true });
           })
           .catch(error => {
             signInErrorToast()

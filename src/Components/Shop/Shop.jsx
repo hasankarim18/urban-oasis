@@ -91,7 +91,7 @@ const Shop = ({products, isProductsLoading}) => {
           </div>
         </div>
         <Cart handleClearCart={handleClearCart} cart={cart}>
-          <Link to="/orders">Review order</Link>
+          <Link className="text-white text-decoration-none " to="/orders">Review order</Link>
         </Cart>
         {/* <OrderSummary cart={cart} /> */}
       </div>
