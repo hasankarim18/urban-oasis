@@ -6,6 +6,7 @@ import { AuthContext } from '../providers/AuthProvider';
 
 const Header = () => {
   const {user} = useContext(AuthContext)
+ 
     return (
       <div
         className={`text-white d-flex flex-column flex-md-row justify-content-between align-items-center ${classes.header}`}
@@ -41,7 +42,7 @@ const Header = () => {
           </li>
           {user && (
             <li>
-              <span className="text-warning"> {user?.displayName}</span>
+              <span className="text-warning"> {user?.email.split('@')[0]}</span>
             </li>
           )}
         </nav>

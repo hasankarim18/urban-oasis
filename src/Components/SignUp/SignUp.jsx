@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {Link} from 'react-router-dom'
 import './SignUp.css'
+import { AuthContext } from '../providers/AuthProvider';
+ import { ToastContainer, toast } from "react-toastify";
+
 
 const SignUp = () => {
     const [error, setError] = useState("")
     const [show, setShow] = useState(false)
+    const {signUpWithEmailPassword} = useContext(AuthContext)
+
+    const signupToast = () => toast(`Your are successfully signed up`);
+    const signupErrorToast = () => toast("Sign up error");
 
     const handleSignUp = (event) => {
       event.preventDefault()
@@ -22,12 +29,22 @@ const SignUp = () => {
       }
 
       console.log(email, password, confirm);
+      signUpWithEmailPassword(email, password)
+      .then(result => {
+         const signedUpUser = result.user;
+         signupToast()
+         form.reset()
+      })
+      .catch(err=> {
+        signupErrorToast()
+      })
     };
 
     
 
     return (
       <div className="form-container">
+       
         <h2 className="form-title">Sign Up</h2>
         <form onSubmit={handleSignUp}>
           <div className="form-control">

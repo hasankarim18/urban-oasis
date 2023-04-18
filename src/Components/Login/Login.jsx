@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {Link} from 'react-router-dom'
 import './Login.css'
+import { AuthContext } from '../providers/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [show, setShow] = useState(false)
+    const {loginWithEmailPassword} = useContext(AuthContext)
+
+    const signInSuccessToast = (userName)=> toast(`Hello ${userName}`)
+    const signInErrorToast = (userName) => toast(`Login Error`);
   
 
 
@@ -13,6 +19,19 @@ const Login = () => {
          
           const email = form.email.value;
           const password = form.password.value;
+
+          loginWithEmailPassword(email,password)
+          .then((res)=> {
+            const loggedInUser = res.user 
+            const userName = loggedInUser.email.split('@')[0]
+            
+            signInSuccessToast(userName)
+            form.reset()
+          })
+          .catch(error => {
+            signInErrorToast()
+            console.log(error);
+          })
 
           console.log(email, password);
     };
