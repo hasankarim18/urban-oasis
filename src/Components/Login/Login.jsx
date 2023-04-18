@@ -33,7 +33,7 @@ const Login = () => {
             console.log(error);
           })
 
-          console.log(email, password);
+
     };
 
     return (

@@ -3,9 +3,21 @@ import classes from './Header.module.css';
 import Logo from '../../images/Logo.svg'
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
+import { toast } from 'react-toastify';
 
 const Header = () => {
-  const {user} = useContext(AuthContext)
+  const {user, logout} = useContext(AuthContext)
+ 
+  const logoutToast = ()=> toast('Sign out succefful')
+  const logoutHandler = ()=> {
+    logout()
+    .then(()=> {
+      logoutToast()
+    })
+    .catch((error)=> {
+      console.log(error);
+    })
+  }
  
     return (
       <div
@@ -42,9 +54,17 @@ const Header = () => {
           </li>
           {user && (
             <li>
-              <span className="text-warning"> {user?.email.split('@')[0]}</span>
+              <span className="text-warning"> {user?.email.split("@")[0]}</span>
             </li>
           )}
+          <li>
+            <span
+              onClick={logoutHandler}
+              className="text-danger border bg-warning rounded p-2"
+            >
+              Sing Out
+            </span>
+          </li>
         </nav>
       </div>
     );
