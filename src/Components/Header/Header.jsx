@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './Header.module.css';
 import Logo from '../../images/Logo.svg'
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../providers/AuthProvider';
 
 const Header = () => {
+  const {user} = useContext(AuthContext)
     return (
       <div
         className={`text-white d-flex flex-column flex-md-row justify-content-between align-items-center ${classes.header}`}
       >
         <img className={classes.logo} src={Logo} alt="" />
-        <nav className={`d-flex gap-3 fs-5 ${classes.nav} text-capitalize`}>
+        <nav
+          className={`d-flex gap-3 fs-5 align-items-center ${classes.nav} text-capitalize`}
+        >
           <li className="nav-itme">
             <NavLink to="/" className={`nav-link ${classes.navlink}`}>
               shop
@@ -35,6 +39,11 @@ const Header = () => {
               Signup
             </NavLink>
           </li>
+          {user && (
+            <li>
+              <span className="text-warning"> {user?.displayName}</span>
+            </li>
+          )}
         </nav>
       </div>
     );

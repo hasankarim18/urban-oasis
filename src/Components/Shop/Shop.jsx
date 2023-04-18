@@ -11,7 +11,7 @@ const Shop = ({products, isProductsLoading}) => {
     const [cart, setCart] = useState([])
 
     const location = useLocation()
-    console.log(location);
+   
 
     useEffect(() => {
       const storedCart = getShoppingCart();

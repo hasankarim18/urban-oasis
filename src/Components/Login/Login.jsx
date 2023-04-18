@@ -4,6 +4,7 @@ import './Login.css'
 
 const Login = () => {
     const [show, setShow] = useState(false)
+  
 
 
     const handleLogin = (event) => {
@@ -12,6 +13,7 @@ const Login = () => {
          
           const email = form.email.value;
           const password = form.password.value;
+
           console.log(email, password);
     };
 
@@ -31,17 +33,32 @@ const Login = () => {
               id=""
               required
             />
-            <p onClick={() => setShow(!show)}>
-              <small style={{cursor:"pointer"}}>
-                {show ? <span>Hide Password</span> : <span>Show Password</span>}
-              </small>
-            </p>
+            <small
+              className="cursor-pointer hover:text-myorange "
+              onClick={() => {
+                setShow((prev) => !prev);
+              }}
+            >
+              {!show ? (
+                <span>
+                  {" "}
+                  Show Password <i className="fa-regular fa-eye"></i>{" "}
+                </span>
+              ) : (
+                <span>
+                  Hide password <i className="fa-regular fa-eye-slash"></i>
+                </span>
+              )}
+            </small>
           </div>
           <input className="btn-submit" type="submit" value="Login" />
         </form>
         <p>
           <small>
-            New to Ema-john? <Link to="/signup">Create New Account</Link>
+            New to Ema-john?{" "}
+            <Link className="text-myorange " to="/signup">
+              Create New Account
+            </Link>
           </small>
         </p>
       </div>

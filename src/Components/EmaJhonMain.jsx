@@ -11,7 +11,7 @@ const EmaJhonMain = () => {
     fetch("/products.json")
       .then((res) => res.json())
       .then((data) => {
-        console.log('load complete');
+      
         setIsProductsLoading(false);
         setProducts(data);
       })
