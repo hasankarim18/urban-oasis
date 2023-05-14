@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import classes from './Header.module.css';
 import Logo from '../../images/Logo.svg'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 import { toast } from 'react-toastify';
 
@@ -23,7 +23,10 @@ const Header = () => {
       <div
         className={`text-white d-flex flex-column flex-md-row justify-content-between align-items-center ${classes.header}`}
       >
-        <img className={classes.logo} src={Logo} alt="" />
+        {/* <img className={classes.logo} src={Logo} alt="" /> */}
+        <h1 className="logo_font">
+          <Link className="nav-link" to="/">Urban Oasis </Link>
+        </h1>
         <nav
           className={`d-flex gap-3 fs-5 align-items-center ${classes.nav} text-capitalize`}
         >

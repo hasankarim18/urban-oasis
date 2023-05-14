@@ -4,11 +4,13 @@ import { Link, useLoaderData} from "react-router-dom";
 import ReviewItem from '../Reviewitem/ReviewItem';
 import './Orders.css'
 import { deleteShoppingCart, removeFromDb } from '../utilities/fakedb';
+import useTitle from '../Hooks/useTitle';
 
 
 const Orders = () => {
      const savedCart = useLoaderData() || []
     const [cart, setCart] = useState(savedCart)
+    useTitle("Orders")
 
     const handleRemoveFromCart = (id)=> {
      const remaining = cart.filter(pd => pd.id !== id)
