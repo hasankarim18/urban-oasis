@@ -1,7 +1,7 @@
-# ema-john-resources
+# Urban Oasis (ema-jhon-simple)
 
-- firebase:: id: hasan.course.2087
-- db name:: ema-john-simple-auth
+- firebase:: id: hallysust
+- firebase project name:: urban-oasis
 
 ### Fake data link: 
 use this link to load data: 
