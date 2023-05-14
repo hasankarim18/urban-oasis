@@ -23,6 +23,7 @@ const Header = () => {
       <div
         className={`text-white d-flex flex-column flex-md-row justify-content-between align-items-center ${classes.header}`}
       >
+        
         {/* <img className={classes.logo} src={Logo} alt="" /> */}
         <h1 className="logo_font">
           <Link className="nav-link" to="/">Urban Oasis </Link>

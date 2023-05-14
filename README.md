@@ -3,10 +3,8 @@
 - firebase:: id: hallysust
 - firebase project name:: urban-oasis
 - ### [`Project Live Link firebase`](https://urban-orasis.web.app)
-
-### Fake data link: 
-use this link to load data: 
-[https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json](https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json)
+- ### [`Project github repo Link`](https://github.com/hasankarim18/urban-oasis)
+- ### [`Project server github repo Link`](https://github.com/hasankarim18/urban-oasis-server)
 
 
 ### Live Link surge: http://delightful-growth.surge.sh/

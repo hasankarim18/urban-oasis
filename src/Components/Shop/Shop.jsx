@@ -19,7 +19,7 @@ const Shop = ({products, isProductsLoading}) => {
       // step-One: get id of the added product 
       for (const id in storedCart) {
         // step two: get product from products state by using id 
-        const addedProduct = products.find(product => product.id === id) 
+        const addedProduct = products.find(product => product._id === id) 
         if(addedProduct){
           // step add quantiry 
           const quantity = storedCart[id];
@@ -39,7 +39,7 @@ const Shop = ({products, isProductsLoading}) => {
 
     const handleAddToCart = (product) => {      
       let newCart = [];   
-      const exists = cart.find((pd)=> pd.id === product.id )
+      const exists = cart.find((pd)=> pd._id === product._id )
 
       if(!exists){
         // for first time add
@@ -48,13 +48,13 @@ const Shop = ({products, isProductsLoading}) => {
       }else {
         // product ase
         exists.quantity = exists.quantity + 1;
-        const remaining = cart.filter((pd)=> pd.id !== product.id )
+        const remaining = cart.filter((pd)=> pd._id !== product._id )
         newCart = [...remaining, exists]
       }
 
       setCart(newCart);
 
-      addToDb(product.id); // video 4
+      addToDb(product._id); // video 4
     };
 
     
@@ -65,11 +65,12 @@ const Shop = ({products, isProductsLoading}) => {
   if(products.length > 0){
     
     showProducts =  products.map((product) => {
+      
         return (
           <Product
             handleAddToCart={handleAddToCart}
             product={product}
-            key={product.id}
+            key={product._id}
           />
         );
       });

@@ -1,8 +1,9 @@
+import baseUrl from "../Components/utilities/baseUrl"
 import { getShoppingCart } from "../Components/utilities/fakedb"
 
 
 const cartProductsLoader = async ()=> {
-    const loadedproduts = await fetch('products.json')
+    const loadedproduts = await fetch(`${baseUrl}/products`);
     const products = await loadedproduts.json()
 
     // if cart dat is in database, you have to use async await
@@ -14,7 +15,7 @@ const cartProductsLoader = async ()=> {
      const savedCart = []
 
     for(const id in storedCart){
-        const addedProducts = products.find(pd => pd.id === id )
+        const addedProducts = products.find(pd => pd._id === id )
         if(addedProducts){
             const quantity = storedCart[id]
             addedProducts.quantity = quantity;

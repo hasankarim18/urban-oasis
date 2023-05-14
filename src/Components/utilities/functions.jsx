@@ -8,7 +8,7 @@ import React from "react";
 const useRenderProducts = (currentProducts) => {
  return currentProducts.map((product) => {
     // console.log(product);
-   return <Product product={product} key={product.id} />
+   return <Product product={product} key={product._id} />
   //  return <h1>Product</h1>
   });
 };

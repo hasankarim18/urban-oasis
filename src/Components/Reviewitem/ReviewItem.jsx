@@ -6,7 +6,7 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 
 const ReviewItem = ({ product, handleRemoveFromCart }) => {
   // console.log(product);
-  const { img, name, quantity, price, shipping,id } = product;
+  const { img, name, quantity, price, shipping,_id } = product;
   return (
     <div className="review_item flex justify-between items-center  ">
       <div className="flex  gap-3">
@@ -27,7 +27,7 @@ const ReviewItem = ({ product, handleRemoveFromCart }) => {
           style={{ width: "50px", height: "50px" }}
           className=" rounded-full flex justify-center items-center bg-red-300 "
         >
-          <TrashIcon onClick={()=> {handleRemoveFromCart(id)}} className="h-6 w-6 text-red-500 cursor-pointer hover:text-white  transition" />
+          <TrashIcon onClick={()=> {handleRemoveFromCart(_id)}} className="h-6 w-6 text-red-500 cursor-pointer hover:text-white  transition" />
         </div>
       </div>
     </div>
