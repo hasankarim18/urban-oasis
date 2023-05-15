@@ -28,7 +28,7 @@ const Product = ({ product, handleAddToCart }) => {
             onClick={() => {
               handleAddToCart(product);
             }}
-            className="btn border cart-btn rounded-0 w-100"
+            className="btn border hover:text-rose-400 cart-btn rounded-0 w-100"
           >
             Add To Cart <span className=""></span>{" "}
             <i className="fa-solid fa-cart-plus"></i>
