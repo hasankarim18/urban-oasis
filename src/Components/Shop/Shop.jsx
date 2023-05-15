@@ -5,29 +5,45 @@ import { addToDb, deleteShoppingCart, getShoppingCart } from '../utilities/faked
 import Spinner from '../utilities/Spinner';
 import './Shop.css';
 import { Link, useLocation } from 'react-router-dom';
+import baseUrl from '../utilities/baseUrl';
 
-const Shop = ({ products, isProductsLoading, totalProducts }) => {
+const Shop = ({ totalProducts  }) => {
+  const [products, setProducts] = useState([]);
+  const [isProductsLoading, setIsProductsLoading] = useState(true);
   const [cart, setCart] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0)
-  const [itemsPerPage, setItemsPerPage] = useState(10)
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const location = useLocation();
- 
-  const totalPages = Math.ceil(totalProducts/itemsPerPage)
-  
+
+  const totalPages = Math.ceil(totalProducts / itemsPerPage);
+
   // const pageNumbers = [];
   // for(let i =1; i<= totalPages; i++){
   //   pageNumbers.push(i)
-  // } 
-   
-  const pageNumbers = [...Array(totalPages).keys()]
+  // }
 
-  const dropdownOptions = [10,20, 30]
+  const pageNumbers = [...Array(totalPages).keys()];
+
+  const dropdownOptions = [10, 20, 30];
   const handleItemsPerPageChange = (event) => {
     setItemsPerPage(event.target.value);
-    setCurrentPage(0)
+    setCurrentPage(0);
   };
 
+  useEffect(() => {
+    setIsProductsLoading(true)
+    fetch(`${baseUrl}/products?page=${currentPage}&limit=${itemsPerPage}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setIsProductsLoading(false);
+        setProducts(data);
+      })
+      .catch((error) => {
+         setIsProductsLoading(false);
+        console.log(error);
+      });
+  }, [currentPage, itemsPerPage]);
 
   useEffect(() => {
     const storedCart = getShoppingCart();
@@ -69,7 +85,6 @@ const Shop = ({ products, isProductsLoading, totalProducts }) => {
     addToDb(product._id); // video 4
   };
 
- 
   const handleClearCart = () => {
     deleteShoppingCart();
     setCart([]);
@@ -129,8 +144,12 @@ const Shop = ({ products, isProductsLoading, totalProducts }) => {
               onChange={handleItemsPerPageChange}
               value={itemsPerPage}
             >
-              {dropdownOptions.map(value => <option  key={value} value={value} > {value} </option>)}
-             
+              {dropdownOptions.map((value) => (
+                <option key={value} value={value}>
+                  {" "}
+                  {value}{" "}
+                </option>
+              ))}
             </select>
           </div>
         </div>
