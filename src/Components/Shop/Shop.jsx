@@ -6,97 +6,101 @@ import Spinner from '../utilities/Spinner';
 import './Shop.css';
 import { Link, useLocation } from 'react-router-dom';
 
-const Shop = ({products, isProductsLoading}) => {  
-  
-    const [cart, setCart] = useState([])
+const Shop = ({ products, isProductsLoading, totalProducts }) => {
+  const [cart, setCart] = useState([]);
 
-    const location = useLocation()
-   
+  const location = useLocation();
 
-    useEffect(() => {
-      const storedCart = getShoppingCart();
-      const savedCart = [];
-      // step-One: get id of the added product 
-      for (const id in storedCart) {
-        // step two: get product from products state by using id 
-        const addedProduct = products.find(product => product._id === id) 
-        if(addedProduct){
-          // step add quantiry 
-          const quantity = storedCart[id];
-          addedProduct.quantity = quantity;
-          // step 4: add the addedproduct to the saved cart
-          savedCart.push(addedProduct)
-        }
-       // console.log({addedProduct});
+  useEffect(() => {
+    const storedCart = getShoppingCart();
+    const savedCart = [];
+    // step-One: get id of the added product
+    for (const id in storedCart) {
+      // step two: get product from products state by using id
+      const addedProduct = products.find((product) => product._id === id);
+      if (addedProduct) {
+        // step add quantiry
+        const quantity = storedCart[id];
+        addedProduct.quantity = quantity;
+        // step 4: add the addedproduct to the saved cart
+        savedCart.push(addedProduct);
       }
-      // step 5: set the cart
-      setCart(savedCart);
+      // console.log({addedProduct});
+    }
+    // step 5: set the cart
+    setCart(savedCart);
+  }, [products]);
 
-    }, [products]);
-    
+  const handleAddToCart = (product) => {
+    let newCart = [];
+    const exists = cart.find((pd) => pd._id === product._id);
 
+    if (!exists) {
+      // for first time add
+      product.quantity = 1;
+      newCart = [...cart, product];
+    } else {
+      // product ase
+      exists.quantity = exists.quantity + 1;
+      const remaining = cart.filter((pd) => pd._id !== product._id);
+      newCart = [...remaining, exists];
+    }
 
+    setCart(newCart);
 
-    const handleAddToCart = (product) => {      
-      let newCart = [];   
-      const exists = cart.find((pd)=> pd._id === product._id )
+    addToDb(product._id); // video 4
+  };
 
-      if(!exists){
-        // for first time add
-        product.quantity = 1
-        newCart = [...cart, product]
-      }else {
-        // product ase
-        exists.quantity = exists.quantity + 1;
-        const remaining = cart.filter((pd)=> pd._id !== product._id )
-        newCart = [...remaining, exists]
-      }
+  let showProducts = null;
 
-      setCart(newCart);
-
-      addToDb(product._id); // video 4
-    };
-
-    
-   
-
-  let showProducts = null
-
-  if(products.length > 0){
-    
-    showProducts =  products.map((product) => {
-      
-        return (
-          <Product
-            handleAddToCart={handleAddToCart}
-            product={product}
-            key={product._id}
-          />
-        );
-      });
-    
+  if (products.length > 0) {
+    showProducts = products.map((product) => {
+      return (
+        <Product
+          handleAddToCart={handleAddToCart}
+          product={product}
+          key={product._id}
+        />
+      );
+    });
   }
 
   const handleClearCart = () => {
-    deleteShoppingCart()
+    deleteShoppingCart();
     setCart([]);
   };
- 
-    
-    return (
-      <div className="shop_containere">
-        <div className="products_container pt-4">
-          <div className="product_grid">
-            {isProductsLoading && <Spinner />}
-            {showProducts}
-          </div>
+
+  return (
+    <div className="shop_containere">
+      <div className="products_container pt-4">
+        <div>
+          <h1>Total Product {totalProducts} </h1>
         </div>
-        <Cart handleClearCart={handleClearCart} cart={cart}>
-          <Link className="text-white text-decoration-none " to="/orders">Review order</Link>
-        </Cart>
-        {/* <OrderSummary cart={cart} /> */}
+        <div className="product_grid">
+          {isProductsLoading && <Spinner />}
+
+          {/* {showProducts} */}
+          {
+            products.map(product => {
+               return (
+                 <Product
+                   handleAddToCart={handleAddToCart}
+                   product={product}
+                   key={product._id}
+                 />
+               );
+            })
+          }
+        </div>
       </div>
-    );
+      <Cart handleClearCart={handleClearCart} cart={cart}>
+        <Link className="text-white text-decoration-none " to="/orders">
+          Review order
+        </Link>
+      </Cart>
+      {/* <OrderSummary cart={cart} /> */}
+    </div>
+  );
 };
 
 export default Shop;

@@ -16,6 +16,8 @@ import AuthProvider from './Components/providers/AuthProvider';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoutes from './Components/Routes/PrivateRoutes'
+import UrbanOasiMain from './Components/UrbanOasiMain'
+import baseUrl from './Components/utilities/baseUrl'
 
 
 const router = createBrowserRouter([
@@ -25,7 +27,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <EmaJhonMain />,
+        element: <UrbanOasiMain />,
+        loader: () => fetch(`${baseUrl}/totalProducts`),
       },
       {
         path: "/orders",
