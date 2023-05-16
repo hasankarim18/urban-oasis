@@ -27,7 +27,7 @@ const Cart = ({ cart, handleClearCart, children }) => {
   return (
     <div className="cart_container p-3">
       <div className="cart_info">
-        <h4>Order Summary</h4>
+        <h4>Side Order Summary</h4>
         <p className="fs-5 fw-bold">
           Selected Item: <span className="text-success"> {quantity} </span>{" "}
         </p>

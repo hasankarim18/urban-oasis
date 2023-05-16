@@ -47,23 +47,36 @@ const Shop = ({ totalProducts  }) => {
 
   useEffect(() => {
     const storedCart = getShoppingCart();
-    const savedCart = [];
-    // step-One: get id of the added product
-    for (const id in storedCart) {
-      // step two: get product from products state by using id
-      const addedProduct = products.find((product) => product._id === id);
-      if (addedProduct) {
-        // step add quantiry
-        const quantity = storedCart[id];
-        addedProduct.quantity = quantity;
-        // step 4: add the addedproduct to the saved cart
-        savedCart.push(addedProduct);
-      }
-      // console.log({addedProduct});
-    }
-    // step 5: set the cart
-    setCart(savedCart);
-  }, [products]);
+    const ids = Object.keys(storedCart)
+    fetch(`${baseUrl}/productsById`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(ids),
+    })
+    .then(res => res.json())
+    .then(cartProducts => {
+     const savedCart = [];
+     // step-One: get id of the added product
+     for (const id in storedCart) {
+       // step two: get product from products state by using id
+       const addedProduct = cartProducts.find((product) => product._id === id);
+       if (addedProduct) {
+         // step add quantiry
+         const quantity = storedCart[id];
+         addedProduct.quantity = quantity;
+         // step 4: add the addedproduct to the saved cart
+         savedCart.push(addedProduct);
+       }
+       // console.log({addedProduct});
+     }
+     // step 5: set the cart
+     setCart(savedCart);
+    })
+
+    
+  }, []);
 
   const handleAddToCart = (product) => {
     let newCart = [];
@@ -132,7 +145,7 @@ const Shop = ({ totalProducts  }) => {
                   ${currentPage === number && "btn-primary"}`}
                   key={number}
                 >
-                  {number}
+                  {number+1}
                 </button>
               );
             })}
